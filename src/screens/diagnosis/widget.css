@@ -1,0 +1,47 @@
+.widget-container,
+.widget-text-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.widget-button {
+  padding: 0.5rem;
+  border-radius: 25px;
+  background: transparent;
+  border: 1px solid green;
+  margin: 3px;
+  cursor: pointer;
+}
+.widget-button-primary {
+  width: 40%;
+  /* margin: auto;
+  border: 1px solid green; */
+}
+
+ul {
+  width: 70%;
+  text-align: left;
+  list-style-type: circle;
+  font-size: 0.9rem;
+  color: black;
+}
+ul li {
+  background: grey;
+  padding: 5px;
+  margin: 5px;
+}
+
+.list-item {
+  text-align: left;
+  font-size: 0.9rem;
+}
+.item-url {
+  text-decoration: none;
+  margin: 6px;
+  display: block;
+  background-color: cadetblue;
+  padding: 8px;
+  border-radius: 2px;
+}

@@ -5,8 +5,8 @@ import {
   Typography,
   Button,
   makeStyles,
-  Link,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 // import { MenuIcon } from "@material-ui/icons";
 
@@ -49,7 +49,9 @@ function NavBar(props) {
           <Link color="inherit"> Report A Case</Link>
         </Button>
         <Button color="inherit">Donate</Button>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit">
+          <Link to="/login">Login</Link>
+        </Button>
       </Toolbar>
     </AppBar>
   );
