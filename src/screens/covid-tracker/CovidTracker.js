@@ -24,15 +24,15 @@ const App = () => {
   const [mapCenter, setMapCenter] = useState({ lat: 10, lng: 8 });
   const [mapZoom, setMapZoom] = useState(5.5);
 
-  useEffect(() => {
-    fetch("https://covidnigeria.herokuapp.com/api")
-      .then((response) => response.json())
-      .then((data) => {
-        let sortedData = sortData(data.data.states);
-        setStatesInfo(sortedData);
-        setCountryInfo(data.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://covidnigeria.herokuapp.com/api")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       let sortedData = sortData(data.data.states);
+  //       setStatesInfo(sortedData);
+  //       setCountryInfo(data.data);
+  //     });
+  // }, []);
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -73,7 +73,7 @@ const App = () => {
   };
 
   return (
-    <div className="app">
+    <div className="app" id="covid-tracker">
       <div className="app__left">
         <div className="app__header">
           <h1>COVID-19 Tracker</h1>

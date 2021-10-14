@@ -1,28 +1,21 @@
-import React, { useState } from "react";
-import CovidTracker from "./screens/covid-tracker/CovidTracker";
-import NavBar from "./components/navbar/NavBar";
-import SelfAssessment from "./screens/diagnosis/SelfAssessment";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
+import withSplashScreen from "./components/withSplashScreen";
 
 import "./App.css";
 import Login from "./components/login/Login";
+import LandingPage from "./screens/land/LandingPage";
 
-function App() {
-  const [open, setIsOpen] = useState(false);
-
-  const toggleOpen = () => {
-    setIsOpen(!open);
-  };
+function App(props) {
   return (
     <div className="App">
-      <NavBar open={open} toggleOpen={toggleOpen} />
-      <CovidTracker />
-      <SelfAssessment open={open} toggleOpen={toggleOpen} />
+      <Route exact path="/" render={() => <LandingPage />} />
+
       <Switch>
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/signin" render={() => <Login {...props} />} />
       </Switch>
     </div>
   );
 }
 
-export default App;
+export default withSplashScreen(App);

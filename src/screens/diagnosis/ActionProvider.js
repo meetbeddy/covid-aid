@@ -65,7 +65,7 @@ class ActionProvider {
     }));
     if (result.symptoms === "Yes" || result.contact === "Yes") {
       text = this.createChatBotMessage(
-        "Your Answer indicate that you should call your health care provider and describe your symptoms ",
+        "Your Answer indicate that you should call your health care provider and describe your symptoms  or you can have one of our health care agent contact by filling the report a case form on this website",
         {
           widget: "contacts",
           delay: 500,

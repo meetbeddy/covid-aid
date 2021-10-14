@@ -1,0 +1,18 @@
+.splash-screen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.splash-screen h1 {
+  font-size: 5em;
+  color: rgb(47, 85, 255);
+}
