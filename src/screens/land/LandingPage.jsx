@@ -6,6 +6,7 @@ import CovidTracker from "../covid-tracker/CovidTracker";
 import SelfAssessment from "../diagnosis/SelfAssessment";
 import JsonData from "../../data/data.json";
 import SmoothScroll from "smooth-scroll";
+import Informatics from "./Informatics";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
@@ -26,6 +27,7 @@ export default function LandingPage() {
       <Navigation open={open} toggleOpen={toggleOpen} />
       <Header data={landingPageData.Header} />
       <CovidTracker />
+      <Informatics data={landingPageData.Blogs} />
       <SelfAssessment open={open} toggleOpen={toggleOpen} />
     </div>
   );

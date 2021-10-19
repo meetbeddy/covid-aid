@@ -2,5 +2,50 @@
   "Header": {
     "title": "Covid Aids and Digital Tools",
     "paragraph": "we provide you with an easy to use digital tool for covid 19...covid tracker, self diagnostic tool, contact tracing, containment and general health informatics"
+  },
+  "Blogs": [
+    {
+      "path": "/covid-blog/public-advice",
+      "name": "Advice For Public"
+    },
+    {
+      "path": "/covid-blog/health-workers",
+      "name": "Advice For health worker"
+    },
+    {
+      "path": "/covid-blog/travel-advice",
+      "name": "Travel Advice"
+    },
+    {
+      "path": "/covid-blog/technical-guidance",
+      "name": "Technical  Guidance"
+    }
+  ],
+  "BlogPosts": {
+    "publicAdvice": [
+      {
+        "id": "How-to-Protect-Yourself-and-Family",
+        "title": "How to Protect Yourself and Family",
+        "post": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. "
+      },
+      {
+        "id": "Protecting-Your-Mental-Health-During-a-Pandemic",
+        "title": "Protecting Your Mental Health During a Pandemic",
+        "post": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. "
+      },
+      {
+        "id": "Coronavirus,-Social-and-Physical-Distancing-and-Self-Quarantine",
+        "title": "Coronavirus, Social and Physical Distancing and Self-Quarantine",
+        "post": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. "
+      },
+      {
+        "id": "Is-the-COVID-19-Vaccine-Safe",
+        "title": "Is the COVID-19 Vaccine Safe?",
+        "post": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. "
+      }
+    ],
+    "healthWorkers": [],
+    "travelAdvice": [],
+    "technicalGuidance": []
   }
 }
