@@ -3,6 +3,54 @@
     "title": "Covid Aids and Digital Tools",
     "paragraph": "we provide you with an easy to use digital tool for covid 19...covid tracker, self diagnostic tool, contact tracing, containment and general health informatics"
   },
+  "Dashboard": [
+    {
+      "id": 1,
+      "name": "Enter Suspected Case",
+      "icon": "nav-icon fas fa-columns",
+      "type": "single",
+      "path": "/dashboard/enter-patient",
+      "admin": false
+    },
+    {
+      "id": 2,
+      "name": "Virological Test Reporting",
+      "icon": "nav-icon fas fa-columns",
+      "type": "single",
+      "path": "/dashboard/test-reporting",
+      "admin": false
+    },
+
+    {
+      "id": 3,
+      "name": "Manage Cases",
+      "icon": "nav-icon fas fa-columns",
+      "type": "multiple",
+      "path": "/dashboard/manage-case",
+      "admin": false,
+
+      "inner": [
+        {
+          "id": 1,
+          "name": "suspected cases",
+          "path": "/dashboard/manage-case/suspected-cases",
+          "icon": "far fa-circle nav-icon"
+        },
+        {
+          "id": 2,
+          "name": "confirmed cases",
+          "path": "/dashboard/manage-case/confirmed-cases",
+          "icon": "far fa-circle nav-icon"
+        },
+        {
+          "id": 3,
+          "name": "closed cases",
+          "path": "/dashboard/manage-case/closed-cases",
+          "icon": "far fa-circle nav-icon"
+        }
+      ]
+    }
+  ],
   "Blogs": [
     {
       "path": "/covid-blog/public-advice",

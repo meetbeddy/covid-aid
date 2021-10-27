@@ -23,7 +23,11 @@ export const Ages = (props) => {
     </button>
   ));
 
-  return <div className="widget-container">{optionsMarkup}</div>;
+  return (
+    <div className="widget-container" id="widget">
+      {optionsMarkup}
+    </div>
+  );
 };
 
 export const Symptoms = (props) => {
@@ -34,6 +38,7 @@ export const Symptoms = (props) => {
 
   const optionsMarkup = options.map((option) => (
     <Button
+      id="widget"
       variant="contained"
       color="primary"
       size="large"
@@ -47,7 +52,7 @@ export const Symptoms = (props) => {
   ));
 
   return (
-    <div className="widget-text-container">
+    <div className="widget-text-container" id="widget">
       <ul>
         <li>Pale, gray, or blue-colored skin, lips, or nail beds,</li>
         <li>
@@ -83,6 +88,7 @@ export const Decision = (props) => {
 
   const optionsMarkup = options.map((option) => (
     <Button
+      id="widget"
       variant="outlined"
       size="large"
       className="widget-button-primary"
@@ -94,7 +100,11 @@ export const Decision = (props) => {
     </Button>
   ));
 
-  return <div className="widget-text-container">{optionsMarkup}</div>;
+  return (
+    <div className="widget-text-container" id="widget">
+      {optionsMarkup}
+    </div>
+  );
 };
 
 export const Contact = (props) => {
@@ -105,6 +115,7 @@ export const Contact = (props) => {
 
   const optionsMarkup = options.map((option) => (
     <Button
+      id="widget"
       variant="outlined"
       size="large"
       className="widget-button-primary"
@@ -131,6 +142,34 @@ export const LearnMore = (props) => {
       text: "Social and Physical Distancing and Self-Quarantine",
       url: "https://www.hopkinsmedicine.org/health/conditions-and-diseases/coronavirus/coronavirus-social-distancing-and-self-quarantine",
       id: 2,
+    },
+  ];
+
+  const optionsMarkup = options.map((link) => (
+    <ul className="list" id="widget">
+      <li key={link.id} className="list-item">
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="item-url"
+        >
+          {" "}
+          {link.text}
+        </a>
+      </li>
+    </ul>
+  ));
+
+  return <div className="widget-text-container">{optionsMarkup}</div>;
+};
+
+export const FormLink = (props) => {
+  const options = [
+    {
+      text: "Take me to form",
+      url: "/report-case",
+      id: 1,
     },
   ];
 

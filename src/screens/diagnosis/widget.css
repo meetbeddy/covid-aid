@@ -20,19 +20,22 @@
   border: 1px solid green; */
 }
 
-ul {
+#widget ul {
   width: 70%;
   text-align: left;
   list-style-type: circle;
   font-size: 0.9rem;
   color: black;
 }
-ul li {
+#widget > ul li {
   background: grey;
   padding: 5px;
   margin: 5px;
 }
-
+#widget a {
+  color: beige;
+  font-size: 1.2rem;
+}
 .list-item {
   text-align: left;
   font-size: 0.9rem;

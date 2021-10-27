@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import AppHeader from "./appHeader/appHeader";
 import SideNav from "./sidenav/SideNav";
-import JsonData from "../../../data/data.json";
+import JsonData from "../../data/data.json";
 import { Redirect } from "react-router-dom";
-import { fetchUserProfile } from "../../../store/actions/userProfileActions";
+// import { fetchUserProfile } from "../../../store/actions/userProfileActions";
 import ControlSIdebar from "./ControlSIdebar";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,13 +18,13 @@ function Dashboard(props) {
     setNagivationData(JsonData);
   }, []);
 
-  useEffect(() => {
-    dispatch(fetchUserProfile(user));
-  }, [dispatch, user]);
+  // useEffect(() => {
+  //   dispatch(fetchUserProfile(user));
+  // }, [dispatch, user]);
 
-  if (!user) {
-    return <Redirect to="/login" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/signin" />;
+  // }
   return (
     <>
       <AppHeader {...props} />

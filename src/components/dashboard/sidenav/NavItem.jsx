@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { loadTree } from "./TreeLoader";
 
 function NavItems(props) {
   const { menus, user } = props;
 
+  React.useEffect(() => {
+    loadTree();
+  });
   const filteredMenus = menus?.filter((menu) => {
-    if (user?.user?.accessLevel > 1) {
+    if (user?.user?.admin === true) {
       return menu.admin || menu.admin === "both";
     } else {
       return !menu.admin || menu.admin === "both";

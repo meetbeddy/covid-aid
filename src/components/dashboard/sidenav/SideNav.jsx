@@ -5,14 +5,21 @@ import UserPannel from "./UserPannel";
 function SideNav(props) {
   const { user } = props;
   return (
-    <aside className="main-sidebar sidebar-dark-primary elevation-4">
-      <Link to="/dashboard" className="brand-link">
+    <aside
+      className="main-sidebar sidebar-dark-primary elevation-4"
+      style={{ backgroundColor: "rgb(72,86,126)" }}
+    >
+      <Link
+        to="/dashboard"
+        className="brand-link"
+        style={{ borderBottom: "1px solid rgb(50, 146, 231)" }}
+      >
         <img
-          src={"img/logo/unn-logo.png"}
-          alt="unn Logo"
+          // src={"img/logo/unn-logo.png"}
+          // alt="unn Logo"
           className="brand-image  img-circle elevation-3"
         />
-        <span className="brand-text font-weight-light">LMCS</span>
+        <span className="brand-text font-weight-light">Covid Aid</span>
       </Link>
 
       <div className="sidebar">

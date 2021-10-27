@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router";
 import { useDispatch } from "react-redux";
-import { logout } from "../../../../store/actions/authActions";
+import { logout } from "../../../store/actions/authActions";
 
 function AppHeader() {
   const dispatch = useDispatch();

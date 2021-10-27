@@ -1,19 +1,19 @@
 const initialState = {
-  members: [],
-  referrals: [],
+  cases: [],
+  contacts: [],
 };
 
 const adminReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_MEMBERS":
+    case "GET_CASES":
       return {
         ...state,
-        members: action?.payload,
+        cases: action?.payload,
       };
-    case "GET_REFERRALS":
+    case "GET_CONTACTS":
       return {
         ...state,
-        referrals: action.payload,
+        contacts: action.payload,
       };
     default:
       return state;

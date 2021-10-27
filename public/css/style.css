@@ -89,6 +89,7 @@ hr {
 }
 #menu .navbar-nav > li {
   background-color: #48567e;
+  margin: 10px;
 }
 #menu .navbar-nav > li > a {
   font-family: "Lato", sans-serif;

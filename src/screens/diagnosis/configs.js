@@ -1,5 +1,12 @@
 import { createChatBotMessage } from "react-chatbot-kit";
-import { Ages, Decision, Symptoms, LearnMore, Contact } from "./widgets";
+import {
+  Ages,
+  Decision,
+  Symptoms,
+  LearnMore,
+  Contact,
+  FormLink,
+} from "./widgets";
 
 const configs = {
   botName: "CovidAid Bot",
@@ -29,6 +36,10 @@ const configs = {
     {
       widgetName: "learnmore",
       widgetFunc: (props) => <LearnMore {...props} />,
+    },
+    {
+      widgetName: "fillform",
+      widgetFunc: (props) => <FormLink {...props} />,
     },
   ],
 
