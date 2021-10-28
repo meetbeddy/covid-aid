@@ -12,7 +12,10 @@ export default function Informatics(props) {
           <div className="row">
             {props.data
               ? props.data.map((d, i) => (
-                  <div className="callout callout-danger col-md-6">
+                  <div
+                    className="callout callout-danger col-md-6"
+                    key={d.name + i}
+                  >
                     <Link to={d.path}>
                       <h5>{d.name}</h5>
                     </Link>

@@ -16,7 +16,7 @@ function SideNav(props) {
       >
         <img
           // src={"img/logo/unn-logo.png"}
-          // alt="unn Logo"
+          alt="Logo"
           className="brand-image  img-circle elevation-3"
         />
         <span className="brand-text font-weight-light">Covid Aid</span>

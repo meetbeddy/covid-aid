@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { Form, Col, Modal } from "react-bootstrap";
+import React from "react";
+import { Modal } from "react-bootstrap";
 
 export default function FollowUpForm(props) {
-  const [inputValue, setInputValue] = useState({
-    fullName: "",
-    gender: "",
-    birthDate: "",
-    age: "",
-    phone: "",
-    occupation: "",
-  });
+  // const [inputValue, setInputValue] = useState({
+  //   fullName: "",
+  //   gender: "",
+  //   birthDate: "",
+  //   age: "",
+  //   phone: "",
+  //   occupation: "",
+  // });
 
   return (
     <Modal

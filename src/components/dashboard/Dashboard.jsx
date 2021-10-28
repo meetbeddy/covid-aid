@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import AppHeader from "./appHeader/appHeader";
 import SideNav from "./sidenav/SideNav";
 import JsonData from "../../data/data.json";
-import { Redirect } from "react-router-dom";
 // import { fetchUserProfile } from "../../../store/actions/userProfileActions";
 import ControlSIdebar from "./ControlSIdebar";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 
 function Dashboard(props) {
-  const person = useSelector((state) => state.auth);
-  const { user } = person;
+  // const person = useSelector((state) => state.auth);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [navigationData, setNagivationData] = useState({});
 
   useEffect(() => {
@@ -22,9 +20,6 @@ function Dashboard(props) {
   //   dispatch(fetchUserProfile(user));
   // }, [dispatch, user]);
 
-  // if (!user) {
-  //   return <Redirect to="/signin" />;
-  // }
   return (
     <>
       <AppHeader {...props} />
