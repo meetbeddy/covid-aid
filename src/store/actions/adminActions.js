@@ -4,7 +4,7 @@ import { baseUrl, getConfig } from "../config";
 export const fetchCases = () => async (dispatch, getState) => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/user/fetchcases`,
+      `${baseUrl}/api/user/fetchcases`,
       getConfig(getState)
     );
     dispatch({ type: "GET_CASES", payload: res.data });
@@ -16,7 +16,7 @@ export const fetchCases = () => async (dispatch, getState) => {
 export const submitTestResult = (data) => async (dispatch, getState) => {
   try {
     const res = await axios.post(
-      `http://localhost:5000/api/user/testresult`,
+      `${baseUrl}/api/user/testresult`,
       data,
       getConfig(getState)
     );
@@ -28,10 +28,9 @@ export const submitTestResult = (data) => async (dispatch, getState) => {
 };
 
 export const addCaseContact = (data) => async (dispatch, getState) => {
-  console.log(data);
   try {
     const res = await axios.post(
-      `http://localhost:5000/api/user/addcontact`,
+      `${baseUrl}/api/user/addcontact`,
       data,
       getConfig(getState)
     );
@@ -45,7 +44,7 @@ export const addCaseContact = (data) => async (dispatch, getState) => {
 export const fetchContact = (id) => async (dispatch, getState) => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/user/fetchcontact/${id}`,
+      `${baseUrl}/api/user/fetchcontact/${id}`,
       getConfig(getState)
     );
     dispatch({ type: "GET_CONTACTS", payload: res.data });
@@ -57,7 +56,7 @@ export const fetchContact = (id) => async (dispatch, getState) => {
 export const addFollowUpDetail = (data) => async (dispatch, getState) => {
   try {
     const res = await axios.post(
-      `http://localhost:5000/api/user/followup}`,
+      `${baseUrl}/api/user/followup}`,
       data,
       getConfig(getState)
     );

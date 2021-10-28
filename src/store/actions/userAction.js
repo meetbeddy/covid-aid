@@ -1,12 +1,9 @@
 import axios from "axios";
-import { baseUrl, getConfig } from "../config";
+import { baseUrl } from "../config";
 
 export const submitCase = (data) => async (dispatch, getState) => {
   try {
-    const res = await axios.post(
-      `http://localhost:5000/api/user/submitcase`,
-      data
-    );
+    const res = await axios.post(`${baseUrl}/api/user/submitcase`, data);
 
     dispatch({ type: "GET_SUCCESS_MSG", payload: res.data });
   } catch (err) {

@@ -9,7 +9,7 @@ const config = {
 export const signIn = (formdata) => async (dispatch) => {
   try {
     const res = await axios.post(
-      `http://localhost:5000/api/user/signin`,
+      `${baseUrl}/api/user/signin`,
       formdata,
       config
     );
@@ -23,7 +23,7 @@ export const signIn = (formdata) => async (dispatch) => {
 export const createUser = (formdata) => async (dispatch) => {
   try {
     const res = await axios.post(
-      `http://localhost:5000/api/user/createuser`,
+      `${baseUrl}/api/user/createuser`,
       formdata,
       config
     );

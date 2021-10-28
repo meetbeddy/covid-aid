@@ -12,4 +12,5 @@ export const getConfig = (getState) => {
   }
 };
 
-export const baseUrl = "https://stark-depths-01637.herokuapp.com";
+export const localUrl = "http://localhost:5000";
+export const baseUrl = "https://desolate-woodland-08640.herokuapp.com";
