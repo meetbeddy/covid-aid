@@ -35,7 +35,7 @@ export const Navigation = (props) => {
             </li>
             <li className="nav-item ">
               <a
-                href="#"
+                href="#page-top"
                 onClick={props.toggleOpen}
                 className="nav-link page-scroll"
               >
