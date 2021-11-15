@@ -11,6 +11,7 @@ export default function ContactForm(props) {
     birthDate: "",
     age: "",
     phone: "",
+    email: "",
     occupation: "",
     address: "",
     caseRelationship: "",
@@ -18,7 +19,19 @@ export default function ContactForm(props) {
     caseId: "",
   });
   const dispatch = useDispatch();
-  const [error, setErrors] = useState({});
+  const [error, setErrors] = useState({
+    fullName: "",
+    gender: "",
+    birthDate: "",
+    age: "",
+    phone: "",
+    email: "",
+    occupation: "",
+    address: "",
+    caseRelationship: "",
+    lastContact: "",
+    caseId: "",
+  });
   const handleChange = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
   };
@@ -41,11 +54,11 @@ export default function ContactForm(props) {
     const newErrors = {};
     if (!fullName || fullName === "")
       newErrors.fullName = "name cannot be blank!";
-    if (!gender || gender === "") newErrors.message = "gender cannot be blank!";
+    if (!gender || gender === "") newErrors.gender = "gender cannot be blank!";
     if (!birthDate || birthDate === "")
       newErrors.birthDate = "date of birth cannot be blank!";
     if (!phone || phone === "")
-      newErrors.phone = "date of birth cannot be blank!";
+      newErrors.phone = "phone of birth cannot be blank!";
     if (!occupation || occupation === "")
       newErrors.occupation = "occupation cannot be blank!";
     if (!address || address === "")
@@ -69,7 +82,20 @@ export default function ContactForm(props) {
       inputValue.caseId = props.caseId;
       dispatch(addCaseContact(inputValue));
       props.handleCloseModal();
-      // console.log(inputValue);
+      //clear form
+      setInputValue({
+        fullName: "",
+        gender: "",
+        birthDate: "",
+        age: "",
+        phone: "",
+        email: "",
+        occupation: "",
+        address: "",
+        caseRelationship: "",
+        lastContact: "",
+        caseId: "",
+      });
     }
   };
   return (
@@ -95,7 +121,7 @@ export default function ContactForm(props) {
               <Form.Control
                 type="text"
                 name="fullName"
-                //   defaultValue={data?.fullName}
+                value={inputValue?.fullName}
                 onChange={handleChange}
                 isInvalid={!!error.fullName}
               />
@@ -113,7 +139,7 @@ export default function ContactForm(props) {
               <Form.Control
                 as="select"
                 name="gender"
-                //   defaultValue={data?.gender}
+                value={inputValue?.gender}
                 onChange={handleChange}
                 isInvalid={!!error.gender}
               >
@@ -134,7 +160,7 @@ export default function ContactForm(props) {
               <Form.Control
                 type="date"
                 name="birthDate"
-                // defaultValue={data?.birthDate}
+                value={inputValue?.birthDate}
                 onChange={handleChange}
                 isInvalid={!!error.birthDate}
               />
@@ -147,7 +173,7 @@ export default function ContactForm(props) {
               <Form.Control
                 type="text"
                 name="phone"
-                // defaultValue={data?.email}
+                value={inputValue?.phone}
                 onChange={handleChange}
                 isInvalid={!!error.phone}
               />
@@ -161,7 +187,7 @@ export default function ContactForm(props) {
             <Form.Control
               type="text"
               name="email"
-              // defaultValue={data?.email}
+              value={inputValue?.email}
               onChange={handleChange}
               isInvalid={!!error.email}
             />
@@ -175,7 +201,7 @@ export default function ContactForm(props) {
               <Form.Control
                 type="text"
                 name="address"
-                // defaultValue={data?.email}
+                value={inputValue?.address}
                 onChange={handleChange}
                 isInvalid={!!error.address}
               />
@@ -188,7 +214,7 @@ export default function ContactForm(props) {
               <Form.Control
                 type="text"
                 name="occupation"
-                // defaultValue={data?.email}
+                value={inputValue?.occupation}
                 onChange={handleChange}
                 isInvalid={!!error.occupation}
               />
@@ -203,7 +229,7 @@ export default function ContactForm(props) {
               <Form.Control
                 type="text"
                 name="caseRelationship"
-                // defaultValue={data?.email}
+                value={inputValue?.caseRelationship}
                 onChange={handleChange}
                 isInvalid={!!error.caseRelationship}
               />
@@ -216,7 +242,7 @@ export default function ContactForm(props) {
               <Form.Control
                 type="date"
                 name="lastContact"
-                // defaultValue={data?.email}
+                value={inputValue?.lastContact}
                 onChange={handleChange}
                 isInvalid={!!error.lastContact}
               />

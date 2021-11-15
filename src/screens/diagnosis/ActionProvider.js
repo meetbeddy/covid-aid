@@ -6,6 +6,12 @@ class ActionProvider {
     this.setState = setStateFunc;
   }
 
+  invalidInput() {
+    const errorMessage = this.createChatBotMessage(
+      "Please enter a valid reply to continue"
+    );
+    this.updateChatbotState(errorMessage);
+  }
   age() {
     const ageMessage = this.createChatBotMessage("what is your age?", {
       widget: "Ages",
@@ -73,7 +79,7 @@ class ActionProvider {
       );
     } else {
       text = this.createChatBotMessage(
-        "your Answer indicates that you are at low risk for COVID-19 at this time, however you should protect your self and others from the spread of COVID-19. Learn More",
+        `your Answer indicates that you are at low risk for COVID-19 at this time, however you should protect your self and others from the spread of COVID-19.Here are some tips to help you and your family`,
         {
           widget: "learnmore",
           delay: 500,

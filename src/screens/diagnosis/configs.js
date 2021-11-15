@@ -12,7 +12,7 @@ const configs = {
   botName: "CovidAid Bot",
   initialMessages: [
     createChatBotMessage(
-      "Hi, I'm here to help you assess your covid-19 risk factor. Reply OKAY to get started"
+      "Hi, I'm here to help you assess your covid-19 risk factor. Reply 1 to get started"
     ),
   ],
 

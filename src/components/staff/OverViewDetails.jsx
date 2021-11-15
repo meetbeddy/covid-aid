@@ -9,10 +9,10 @@ import moment from "moment";
 export default function OverViewDetails(props) {
   const state = props.location.state;
 
+  console.log(state);
+
   const { contacts } = useSelector((state) => state.admin);
   const dispatch = useDispatch();
-
-  console.log(state);
 
   const data = [];
   contacts?.caseContacts?.forEach((c, index) => {
@@ -25,8 +25,10 @@ export default function OverViewDetails(props) {
   }, [dispatch, state._id]);
 
   const [showModal, setShowModal] = React.useState(false);
+  const [modal, selectedModal] = React.useState("");
 
-  const handleShowModal = () => {
+  const handleShowModal = (e) => {
+    selectedModal(e.target.value);
     setShowModal(true);
   };
 
@@ -128,6 +130,7 @@ export default function OverViewDetails(props) {
               <button
                 className="btn btn-primary float-right"
                 onClick={handleShowModal}
+                value="follow-up"
               >
                 Enter Follow up Information
               </button>
@@ -201,6 +204,7 @@ export default function OverViewDetails(props) {
               <button
                 onClick={handleShowModal}
                 className="btn btn-primary float-right"
+                value="add-contact"
               >
                 Add Contact
               </button>
@@ -215,9 +219,13 @@ export default function OverViewDetails(props) {
           </div>
         </div>
       </div>
-      <FollowUpForm showModal={showModal} handleCloseModal={handleCloseModal} />
+      <FollowUpForm
+        showModal={modal === "follow-up" ? showModal : false}
+        handleCloseModal={handleCloseModal}
+        caseId={props.location.state?._id}
+      />
       <ContactForm
-        showModal={showModal}
+        showModal={modal === "add-contact" ? showModal : false}
         handleCloseModal={handleCloseModal}
         caseId={props.location.state?._id}
       />

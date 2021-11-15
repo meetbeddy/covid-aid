@@ -3,7 +3,7 @@
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: left;
 }
 
 .widget-button {
@@ -11,13 +11,13 @@
   border-radius: 25px;
   background: transparent;
   border: 1px solid green;
-  margin: 3px;
+
   cursor: pointer;
+  font-size: 1.5rem;
 }
-.widget-button-primary {
+#widget.widget-button-primary {
   width: 40%;
-  /* margin: auto;
-  border: 1px solid green; */
+  margin: 5px;
 }
 
 #widget ul {
@@ -31,10 +31,11 @@
   background: grey;
   padding: 5px;
   margin: 5px;
+  font-size: 1.2rem;
 }
 #widget a {
   color: beige;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .list-item {
   text-align: left;

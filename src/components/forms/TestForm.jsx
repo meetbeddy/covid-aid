@@ -59,14 +59,18 @@ export default function TestForm(props) {
     if (!labId || labId === "") newErrors.labId = "Lab Id cannot be blank!";
     if (!specimenNumber || specimenNumber === "")
       newErrors.specimenNumber = "Number of specimen cannot be blank!";
-    if (!sampleCollected || sampleCollected === "")
-      newErrors.sampleCollected = "sample collected cannot be blank!";
     if (!sampleRecievedDate || sampleRecievedDate === "")
       newErrors.sampleRecievedDate = "date recieved cannot be blank!";
     if (!testResult || testResult === "")
       newErrors.testResult = "test result cannot be blank!";
     if (!resultDate || resultDate === "")
       newErrors.resultDate = "result date cannot be blank!";
+    if (!sampleCollected || sampleCollected === "") {
+      newErrors.sampleCollected = "sample collected cannot be blank!";
+    } else if (sampleCollected < 0) {
+      newErrors.sampleCollected =
+        "number of sample collected cannot be negative!";
+    }
 
     return newErrors;
   };
@@ -78,6 +82,16 @@ export default function TestForm(props) {
     e.preventDefault();
     inputValue.caseId = data._id;
     dispatch(submitTestResult(inputValue));
+    setInputValue({
+      labId: "",
+      specimenNumber: "",
+      sampleCollected: "",
+      sampleRecievedDate: "",
+      testResult: "",
+      resultDate: "",
+      caseId: "",
+    });
+
     // console.log(inputValue);
     handleCloseModal();
   };
@@ -101,7 +115,7 @@ export default function TestForm(props) {
               <Form.Control
                 type="text"
                 name="fullName"
-                defaultValue={data?.fullName}
+                DefaultValue={data?.fullName}
                 readOnly
               />
             </Form.Group>
@@ -171,7 +185,7 @@ export default function TestForm(props) {
               <Form.Control
                 type="text"
                 name="labId"
-                // defaultValue={data?.email}
+                value={inputValue?.labId}
                 onChange={handleChange}
                 isInvalid={!!error.labId}
               />
@@ -184,7 +198,7 @@ export default function TestForm(props) {
               <Form.Control
                 type="number"
                 name="specimenNumber"
-                // defaultValue={data?.email}
+                value={inputValue?.specimenNumber}
                 onChange={handleChange}
                 isInvalid={!!error.specimenNumber}
               />
@@ -199,12 +213,12 @@ export default function TestForm(props) {
               <Form.Control
                 type="text"
                 name="sampleCollected"
-                // defaultValue={data?.email}
+                value={inputValue?.sampleCollected}
                 onChange={handleChange}
                 isInvalid={!!error.sampleCollected}
               />
               <Form.Control.Feedback type="invalid">
-                {error.occupation}
+                {error.sampleCollected}
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="col-md-6" controlId="formdepartment">
@@ -212,7 +226,7 @@ export default function TestForm(props) {
               <Form.Control
                 type="date"
                 name="sampleRecievedDate"
-                // defaultValue={data?.email}
+                value={inputValue?.sampleRecievedDate}
                 onChange={handleChange}
                 isInvalid={!!error.sampleRecievedDate}
               />
@@ -232,7 +246,7 @@ export default function TestForm(props) {
               <Form.Control
                 as="select"
                 name="testResult"
-                //   defaultValue={data?.gender}
+                value={inputValue?.testResult}
                 onChange={handleChange}
               >
                 <option> Select Test Result</option>
@@ -250,7 +264,7 @@ export default function TestForm(props) {
               <Form.Control
                 type="date"
                 name="resultDate"
-                // defaultValue={data?.email}
+                value={inputValue?.resultDate}
                 onChange={handleChange}
                 isInvalid={!!error.resultDate}
               />

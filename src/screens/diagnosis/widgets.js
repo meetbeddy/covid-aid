@@ -1,4 +1,5 @@
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import "./widget.css";
 
 export const Ages = (props) => {
@@ -89,8 +90,9 @@ export const Decision = (props) => {
   const optionsMarkup = options.map((option) => (
     <Button
       id="widget"
-      variant="outlined"
+      variant="contained"
       size="large"
+      color="primary"
       className="widget-button-primary"
       key={option.id}
       value={option.text}
@@ -134,34 +136,55 @@ export const LearnMore = (props) => {
   const options = [
     {
       text: "how to ptotect yourself and your family",
-      url: "https://www.cdc.gov/coronavirus/2019/-ncov/prevent-getting-sick/prevention.html",
+      url: "/covid-blog/public-advice/How-to-Protect-Yourself-and-Family",
 
       id: 1,
     },
     {
       text: "Social and Physical Distancing and Self-Quarantine",
-      url: "https://www.hopkinsmedicine.org/health/conditions-and-diseases/coronavirus/coronavirus-social-distancing-and-self-quarantine",
+      url: "/covid-blog/public-advice/Coronavirus,-Social-and-Physical-Distancing-and-Self-Quarantine",
       id: 2,
     },
   ];
 
   const optionsMarkup = options.map((link) => (
-    <ul className="list" id="widget">
+    <ul id="widget" style={{ textAlign: "left" }}>
       <li key={link.id} className="list-item">
-        <a
-          href={link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="item-url"
-        >
+        <Link to={link.url} className="item-url">
           {" "}
           {link.text}
-        </a>
+        </Link>
       </li>
     </ul>
   ));
 
-  return <div className="widget-text-container">{optionsMarkup}</div>;
+  return (
+    <div className="widget-text-container">
+      <div style={{ textAlign: "left", fontSize: "1.2rem" }}>
+        Here are some more steps everyone can take to help stop the spread of
+        COVID-19:
+        <li>
+          Wash your hands often with soap and clean, running water for at least
+          20 seconds.
+        </li>
+        <li>
+          If you don’t have access to soap and water, use an alcohol-based hand
+          sanitizer often. Make sure it has at least 60% alcohol.
+        </li>
+        <li>
+          Don't touch your eyes, nose, or mouth unless you have clean hands.
+        </li>
+        <li>
+          Cough or sneeze into a tissue, then throw the tissue into the trash.
+          If you don't have tissues, cough or sneeze into the bend of your
+          elbow.
+        </li>
+        <br />
+        Read More...
+      </div>
+      {optionsMarkup}
+    </div>
+  );
 };
 
 export const FormLink = (props) => {

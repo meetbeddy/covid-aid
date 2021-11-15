@@ -1,16 +1,78 @@
-import React from "react";
-import { Modal } from "react-bootstrap";
+import React, { useState } from "react";
+import { Modal, Form, Col } from "react-bootstrap";
+import { addFollowUpDetail } from "../../store/actions/adminActions";
+import { useDispatch } from "react-redux";
 
 export default function FollowUpForm(props) {
-  // const [inputValue, setInputValue] = useState({
-  //   fullName: "",
-  //   gender: "",
-  //   birthDate: "",
-  //   age: "",
-  //   phone: "",
-  //   occupation: "",
-  // });
+  const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState({
+    healthStatus: "",
+    treatmentCenter: "",
+    treatmentStartDate: "",
+    prescription: "",
+    medTeamLeader: "",
+    symptoms: "",
+  });
 
+  const [error, setErrors] = useState({
+    healthStatus: "",
+    treatmentCenter: "",
+    treatmentStartDate: "",
+    prescription: "",
+    medTeamLeader: "",
+    symptoms: "",
+  });
+  const findError = () => {
+    const {
+      healthStatus,
+      treatmentCenter,
+      treatmentStartDate,
+      prescription,
+      medTeamLeader,
+      symptoms,
+    } = inputValue;
+    const newErrors = {};
+    if (!healthStatus || healthStatus === "")
+      newErrors.healthStatus = "health status cannot be blank!";
+    if (!treatmentCenter || treatmentCenter === "")
+      newErrors.treatmentCenter = "treatment center cannot be blank!";
+    if (!treatmentStartDate || treatmentStartDate === "")
+      newErrors.treatmentStartDate = "treatment start date cannot be blank!";
+    if (!prescription || prescription === "")
+      newErrors.prescription = "prescription  cannot be blank!";
+    if (!medTeamLeader || medTeamLeader === "")
+      newErrors.medTeamLeader = "med team leader cannot be blank!";
+    if (!symptoms || symptoms === "")
+      newErrors.symptoms = "symptoms cannot be blank!";
+
+    return newErrors;
+  };
+  const handleChange = (e) => {
+    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = findError();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+    } else {
+      inputValue.caseId = props.caseId;
+      console.log(inputValue);
+      dispatch(addFollowUpDetail(inputValue));
+      props.handleCloseModal();
+      //clear form
+      setInputValue({
+        healthStatus: "",
+        treatmentCenter: "",
+        treatmentStartDate: "",
+        prescription: "",
+        medTeamLeader: "",
+        maxTemperature: "",
+        diagonistic: "",
+      });
+    }
+  };
   return (
     <Modal
       size="lg"
@@ -23,89 +85,121 @@ export default function FollowUpForm(props) {
           id="example-modal-sizes-title-lg"
           style={{ textAlign: "center" }}
         >
-          Follow Up Form
+          Case Follow Up Form
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* <Form className=" invoice p-3 mb-3 col-12">
-        <div className="card-body row">
-          <Form.Group className="mb-3 col-md-6" controlId="formdepartment">
-            <Form.Label>Full name</Form.Label>
-            <Form.Control
-              type="text"
-              name="fullName"
-              //   defaultValue={data?.fullName}
-              onChange={handleChange}
-              isInvalid={!!error.fullName}
-            />
-            <Form.Control.Feedback type="invalid">
-              {error.fullName}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group
-            xs={12}
-            as={Col}
-            className="col-md-6"
-            controlId="formTitle"
-          >
-            <Form.Label>Gender</Form.Label>
-            <Form.Control
-              as="select"
-              name="gender"
-              //   defaultValue={data?.gender}
-              onChange={handleChange}
-              isInvalid={!!error.gender}
+        <Form className="  col-12">
+          <div className="card-body row">
+            <Form.Group
+              xs={12}
+              as={Col}
+              className="col-md-6"
+              controlId="formTitle"
             >
-              <option> select your Gender</option>
-              <option value="Male">Male </option>
-              <option value="Female">Female</option>
-              <option value="Others">Others</option>
-            </Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {error.gender}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </div>
+              <Form.Label>Case Health Status</Form.Label>
+              <Form.Control
+                as="select"
+                name="healthStatus"
+                value={inputValue?.healthStatus}
+                onChange={handleChange}
+                isInvalid={!!error.healthStatus}
+              >
+                <option> select Case Health Status</option>
+                <option value="Recovered">Recovered</option>
+                <option value="Still Ill">Still Ill</option>
+                <option value="Dead">Dead</option>
+                <option value="Lost to Followup">Lost to followup</option>
+              </Form.Control>
+              <Form.Control.Feedback type="invalid">
+                {error.healthStatus}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3 col-md-6" controlId="formdepartment">
+              <Form.Label>Date Treament Commenced</Form.Label>
+              <Form.Control
+                type="date"
+                name="treatmentStartDate"
+                value={inputValue?.treatmentStartDate}
+                onChange={handleChange}
+                isInvalid={!!error.treatmentStartDate}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.treatmentStartDate}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </div>
 
-        <div className="card-body row">
-          <Form.Group className="col-md-6" controlId="formbirthdate">
-            <Form.Label>Date of birth</Form.Label>
-            <Form.Control
-              type="date"
-              name="birthDate"
-              // defaultValue={data?.birthDate}
-              onChange={handleChange}
-              isInvalid={!!error.birthDate}
-            />
-            <Form.Control.Feedback type="invalid">
-              {error.birthDate}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group className="col-md-6" controlId="formdepartment">
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control
-              type="text"
-              name="phone"
-              // defaultValue={data?.email}
-              onChange={handleChange}
-              isInvalid={!!error.phone}
-            />
-            <Form.Control.Feedback type="invalid">
-              {error.phone}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </div>
+          <div className="card-body row">
+            <Form.Group className="col-md-6" controlId="formbirthdate">
+              <Form.Label>Treatment Center</Form.Label>
+              <Form.Control
+                type="text"
+                name="treatmentCenter"
+                value={inputValue?.treatmentCenter}
+                onChange={handleChange}
+                isInvalid={!!error.treatmentCenter}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.treatmentCenter}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="col-md-6" controlId="formdepartment">
+              <Form.Label>Medical Team Leader</Form.Label>
+              <Form.Control
+                type="text"
+                name="medTeamLeader"
+                value={inputValue?.email}
+                onChange={handleChange}
+                isInvalid={!!error.medTeamLeader}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.medTeamLeader}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </div>
 
-        <div className="card-footer">
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className="btn btn-primary float-right"
-          >
-            Submit
-          </button>
-        </div>
-      </Form> */}
+          <div className="card-body row">
+            <Form.Group className="col-md-6" controlId="formbirthdate">
+              <Form.Label>Prescription used</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="enter each prescription followed by comma"
+                name="prescription"
+                value={inputValue?.prescription}
+                onChange={handleChange}
+                isInvalid={!!error.prescription}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.prescription}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="col-md-6" controlId="formdepartment">
+              <Form.Label>Diagnostic Symptoms</Form.Label>
+              <Form.Control
+                type="text"
+                name="symptoms"
+                value={inputValue?.symptoms}
+                onChange={handleChange}
+                isInvalid={!!error.symptoms}
+                placeholder="enter each symptoms followed by comma"
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.symptoms}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </div>
+
+          <div className="card-footer">
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="btn btn-primary float-right"
+            >
+              Submit
+            </button>
+          </div>
+        </Form>
       </Modal.Body>
     </Modal>
   );

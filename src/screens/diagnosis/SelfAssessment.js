@@ -8,21 +8,24 @@ import ActionProvider from "./ActionProvider";
 import "./selfassess.css";
 
 const getModalStyle = () => {
-  const top = 10;
-  const left = 20;
+  const top = 2;
+  const left = 10;
+
   return {
-    width: "50%",
-    height: "550px",
+    width: "80%",
+    height: "600px",
     position: "fixed",
     top: `${top}%`,
     left: `${left}%`,
-    right: "20%",
+    right: `${-left}`,
+
     // transform: `translate(-${top}%, -${left}%)`,
     margin: "auto",
     backgroundColor: "white",
     textAlign: "center",
     padding: "10px",
     boxSizing: "border-box",
+    fontSize: "2em",
   };
 };
 

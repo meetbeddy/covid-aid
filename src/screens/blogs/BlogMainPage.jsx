@@ -27,15 +27,15 @@ function BlogMainPage(props) {
     title = "Public Advice";
     id = pathid;
     data = blogPageData?.BlogPosts?.publicAdvice;
-  } else if (props.title === "Health Workers") {
-    title = "Health Advice";
+  } else if (pathname === "health-workers") {
+    title = "Health Workers";
     id = pathid;
-    data = blogPageData?.BlogPosts?.healthAdvice;
-  } else if (props.title === "Travel Advice") {
+    data = blogPageData?.BlogPosts?.healthWorkers;
+  } else if (pathname === "travel-advice") {
     title = "Travel Advice";
     id = pathid;
     data = blogPageData?.BlogPosts?.travelAdvice;
-  } else if (props.title === "Technical Guidance") {
+  } else if (pathname === "technical-guidance") {
     title = "Technical Guidance";
     id = pathid;
     data = blogPageData?.BlogPosts?.technicalGuidance;
