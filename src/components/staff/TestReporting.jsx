@@ -76,7 +76,7 @@ export default function TestReporting(props) {
       {cases.length > 0 ? (
         <BootstrapTable keyField="_id" data={data} columns={columns} />
       ) : (
-        <h1>No case at this time </h1>
+        <h1>loading </h1>
       )}
     </ContentWrapper>
   );

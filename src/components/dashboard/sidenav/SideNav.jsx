@@ -14,11 +14,11 @@ function SideNav(props) {
         className="brand-link"
         style={{ borderBottom: "1px solid rgb(50, 146, 231)" }}
       >
-        <img
+        {/* <img
           // src={"img/logo/unn-logo.png"}
           alt="Logo"
           className="brand-image  img-circle elevation-3"
-        />
+        /> */}
         <span className="brand-text font-weight-light">Covid Aid</span>
       </Link>
 
@@ -26,21 +26,6 @@ function SideNav(props) {
         <UserPannel user={user} />
         {/* <!-- Sidebar Menu --> */}
 
-        <div className="form-inline">
-          <div className="input-group" data-widget="sidebar-search">
-            <input
-              className="form-control form-control-sidebar"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <div className="input-group-append">
-              <button className="btn btn-sidebar">
-                <i className="fas fa-search fa-fw"></i>
-              </button>
-            </div>
-          </div>
-        </div>
         <NavItem {...props} menus={props.data} />
       </div>
     </aside>

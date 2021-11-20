@@ -3,8 +3,12 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { useDispatch, useSelector } from "react-redux";
 import ContentWrapper from "../utilities/ContentWrapper";
 import { fetchCases } from "../../store/actions/adminActions";
+import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import { Button } from "react-bootstrap";
+import { DotLoader } from "react-spinners";
 
 export default function ConfirmedCases(props) {
+  const [loading, setLoading] = React.useState(true);
   const { cases } = useSelector((state) => state.admin);
   const dispatch = useDispatch();
 
@@ -21,6 +25,8 @@ export default function ConfirmedCases(props) {
   React.useEffect(() => {
     dispatch(fetchCases());
   }, [dispatch]);
+
+  const { SearchBar } = Search;
 
   const openProfile = (cell, row, rowIndex, formatExtraData) => {
     return (
@@ -68,16 +74,56 @@ export default function ConfirmedCases(props) {
       sort: true,
     },
   ];
+
+  const MyExportCSV = (props) => {
+    const handleClick = () => {
+      props.onExport();
+    };
+    return (
+      <div style={{ textAlign: "right" }}>
+        <Button variant="primary" size="lg" onClick={handleClick}>
+          Export To CSV
+        </Button>
+      </div>
+    );
+  };
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  });
+  const override = `
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
   return (
     <ContentWrapper>
-      {confirmedCases.length > 0 ? (
+      {loading ? (
+        <div className="splash-screen">
+          <DotLoader color={"#36D7B7"} css={override} size={150} />
+        </div>
+      ) : confirmedCases.length > 0 ? (
         <>
           <h3> Confirmed Cases </h3>
-          <BootstrapTable
+          <ToolkitProvider
+            stripped
+            hover
             keyField="_id"
             data={confirmedCases}
             columns={columns}
-          />
+            exportCSV
+            search
+          >
+            {(props) => (
+              <div>
+                <SearchBar {...props.searchProps} />
+                <MyExportCSV {...props.csvProps} />
+                <hr />
+                <BootstrapTable {...props.baseProps} />
+              </div>
+            )}
+          </ToolkitProvider>
         </>
       ) : (
         <h1>No case at this time </h1>

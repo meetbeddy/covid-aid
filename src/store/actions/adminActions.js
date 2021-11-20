@@ -56,26 +56,27 @@ export const fetchContact = (id) => async (dispatch, getState) => {
 export const addFollowUpDetail = (data) => async (dispatch, getState) => {
   try {
     const res = await axios.post(
-      `${baseUrl}/api/user/followup}`,
+      `http://localhost:5000/api/user/followup`,
       data,
       getConfig(getState)
     );
-
     dispatch({ type: "GET_SUCCESS_MSG", payload: res.data });
+    dispatch(fetchCases());
   } catch (err) {
     dispatch({ type: "GET_ERROR_MSG", payload: err.response?.data });
   }
 };
 
-// export const wakeup = () => async (dispatch, getState) => {
-//   try {
-//     const res = await axios.get(
-//       `${baseUrl}/admin/API/getmembers`,
-//       getConfig(getState)
-//     );
-
-//     dispatch({ type: "GET_SUCCESS", payload: res.data });
-//   } catch (err) {
-//     dispatch({ type: "GET_ERROR", payload: err.response?.data });
-//   }
-// };
+export const editCase = (data) => async (dispatch, getState) => {
+  try {
+    const res = await axios.put(
+      `http://localhost:5000/api/user/editcase`,
+      data,
+      getConfig(getState)
+    );
+    dispatch({ type: "GET_SUCCESS_MSG", payload: res.data });
+    dispatch(fetchCases());
+  } catch (err) {
+    dispatch({ type: "GET_ERROR_MSG", payload: err.response?.data });
+  }
+};

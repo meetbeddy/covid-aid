@@ -21,8 +21,10 @@ export default function TestForm(props) {
   const [smShow, setSmShow] = useState(false);
   const notification = useSelector((state) => state.notification);
   const dispatch = useDispatch();
+
   const data = props.location?.state;
 
+  console.log(data);
   React.useEffect(() => {
     const { success } = notification;
     if (success.message) {
@@ -115,7 +117,7 @@ export default function TestForm(props) {
               <Form.Control
                 type="text"
                 name="fullName"
-                DefaultValue={data?.fullName}
+                value={data?.fullName}
                 readOnly
               />
             </Form.Group>
@@ -155,7 +157,7 @@ export default function TestForm(props) {
               <Form.Control
                 type="text"
                 name="phone"
-                defaultValue={data?.phone}
+                value={data?.phone}
                 readOnly
               />
             </Form.Group>
@@ -167,17 +169,12 @@ export default function TestForm(props) {
               <Form.Control
                 type="text"
                 name="occupation"
-                defaultValue={data?.occupation}
+                value={data?.occupation}
                 readOnly
               />
             </Form.Group>
           </div>
-          <div className=" callout callout-info">
-            <h5>
-              <i className="fas fa-info"></i> Note:
-            </h5>
-            fill in test result here
-          </div>
+          <div className=" callout callout-info">fill in test result here</div>
 
           <div className="card-body row">
             <Form.Group className="col-md-6" controlId="formdepartment">
@@ -251,7 +248,7 @@ export default function TestForm(props) {
               >
                 <option> Select Test Result</option>
                 <option value="positive">Positive </option>
-                <option value="Negative">Negative</option>
+                <option value="negative">Negative</option>
                 isInvalid={!!error.testResult}
               </Form.Control>
               <Form.Control.Feedback type="invalid">

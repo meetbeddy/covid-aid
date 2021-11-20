@@ -5,7 +5,7 @@ import numeral from "numeral";
 function Table({ countries }) {
   console.log(countries);
   return (
-    <table className="table">
+    <table className="table" id="covid-tracker">
       <thead>
         <tr>
           <th>State</th>

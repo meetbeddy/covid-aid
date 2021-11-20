@@ -53,7 +53,11 @@ export const Symptoms = (props) => {
   ));
 
   return (
-    <div className="widget-text-container" id="widget">
+    <div
+      className="widget-text-container"
+      id="widget"
+      style={{ color: "white" }}
+    >
       <ul>
         <li>Pale, gray, or blue-colored skin, lips, or nail beds,</li>
         <li>

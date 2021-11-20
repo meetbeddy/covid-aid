@@ -5,11 +5,18 @@ import FollowUpForm from "../forms/FollowUpForm";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContact } from "../../store/actions/adminActions";
 import moment from "moment";
+import EditCase from "./EditCase";
+import { ScaleLoader } from "react-spinners";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function OverViewDetails(props) {
-  const state = props.location.state;
+  const [loading, setLoading] = React.useState(false);
+  const stateId = props.location.state;
+  const { cases } = useSelector((state) => state.admin);
 
-  console.log(state);
+  const state = cases.filter((c) => {
+    return c._id === stateId._id;
+  })[0];
 
   const { contacts } = useSelector((state) => state.admin);
   const dispatch = useDispatch();
@@ -21,8 +28,8 @@ export default function OverViewDetails(props) {
   });
 
   React.useEffect(() => {
-    dispatch(fetchContact(state._id));
-  }, [dispatch, state._id]);
+    dispatch(fetchContact(stateId._id));
+  }, [dispatch, stateId._id]);
 
   const [showModal, setShowModal] = React.useState(false);
   const [modal, selectedModal] = React.useState("");
@@ -32,6 +39,13 @@ export default function OverViewDetails(props) {
     setShowModal(true);
   };
 
+  const simulateFetch = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      toast.warning("failed to connect");
+    }, 5000);
+  };
   const handleCloseModal = () => {
     dispatch(fetchContact(state._id));
     setShowModal(false);
@@ -74,6 +88,11 @@ export default function OverViewDetails(props) {
       sort: true,
     },
   ];
+  const override = `
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
   return (
     <div className="card-body row">
       <div className="col-5 col-sm-3">
@@ -128,6 +147,14 @@ export default function OverViewDetails(props) {
           >
             <div className="card-header">
               <button
+                className="btn btn-info float-right"
+                onClick={handleShowModal}
+                value="edit"
+                style={{ marginLeft: "5px" }}
+              >
+                Edit
+              </button>
+              <button
                 className="btn btn-primary float-right"
                 onClick={handleShowModal}
                 value="follow-up"
@@ -141,24 +168,46 @@ export default function OverViewDetails(props) {
               <dd className="col-sm-8">{state?.fullName}</dd>
               <dt className="col-sm-4">Date of birth</dt>
               <dd className="col-sm-8">{state?.birthDate}</dd>
-              <dt className="col-sm-4">Gender</dt>
-              <dd className="col-sm-8">{state?.gender}</dd>
+              <dt className="col-sm-4">Age</dt>
+              <dd className="col-sm-8">{state?.age}</dd>
               <dt className="col-sm-4">Email</dt>
               <dd className="col-sm-8">{state?.email}</dd>
               <dt className="col-sm-4">Phone number</dt>
               <dd className="col-sm-8">{state?.phone}</dd>
               <dt className="col-sm-4">Occupation</dt>
               <dd className="col-sm-8">{state?.occupation}</dd>
+              <dt className="col-sm-4">Address</dt>
+              <dd className="col-sm-8">{state?.address}</dd>
             </dl>
             <p className="lead text-primary">Follow Up Information</p>
-            <dl className="row">
-              <dt className="col-sm-4">Number of Virological Test</dt>
-              <dd className="col-sm-8">{state?.fullName}</dd>
-              <dt className="col-sm-4">Date of Last Test</dt>
-              <dd className="col-sm-8">{state?.birthDate}</dd>
-              <dt className="col-sm-4">Complication </dt>
-              <dd className="col-sm-8">{state?.gender}</dd>
-            </dl>
+            {state?.caseFollowUp && (
+              <dl className="row">
+                <dt className="col-sm-4"> Health Status:</dt>
+                <dd className="col-sm-8">
+                  {state?.caseFollowUp?.healthStatus}
+                </dd>
+                <dt className="col-sm-4">Treatment Center</dt>
+                <dd className="col-sm-8">
+                  {state?.caseFollowUp?.treatmentCenter}
+                </dd>
+                <dt className="col-sm-4">Prescription </dt>
+                <dd className="col-sm-8">
+                  {state?.caseFollowUp?.prescription}
+                </dd>
+                <dt className="col-sm-4">Medical Team Leader </dt>
+                <dd className="col-sm-8">
+                  {state?.caseFollowUp?.medTeamLeader}
+                </dd>
+                <dt className="col-sm-4">Date Treatement Commenced </dt>
+                <dd className="col-sm-8">
+                  {state?.caseFollowUp?.treatmentStartDate}
+                </dd>
+                <dt className="col-sm-4">Date last updated </dt>
+                <dd className="col-sm-8">
+                  {moment(stateId?.caseFollowUp?.updatedAt).format("llll")}
+                </dd>
+              </dl>
+            )}
           </div>
           <div
             className="tab-pane fade"
@@ -166,7 +215,7 @@ export default function OverViewDetails(props) {
             role="tabpanel"
             aria-labelledby="vert-tabs-profile-tab"
           >
-            {state.testResult?.map((test, i) => {
+            {state?.testResult?.map((test, i) => {
               return (
                 <div key={test._id}>
                   <p className="lead text-primary">Result {i + 1}</p>
@@ -174,14 +223,14 @@ export default function OverViewDetails(props) {
                     <dt className="col-sm-4">Lab Id</dt>
                     <dd className="col-sm-8">{test?.labId}</dd>
                     <dt className="col-sm-4">Number of Specimen</dt>
-                    <dd className="col-sm-8">{test.specimenNumber}</dd>
+                    <dd className="col-sm-8">{test?.specimenNumber}</dd>
                     <dt className="col-sm-4">sample collected</dt>
-                    <dd className="col-sm-8">{test.sampleCollected}</dd>
+                    <dd className="col-sm-8">{test?.sampleCollected}</dd>
                     <dt className="col-sm-4">Result</dt>
-                    <dd className="col-sm-8">{test.testResult}</dd>
+                    <dd className="col-sm-8">{test?.testResult}</dd>
                     <dt className="col-sm-4"> date</dt>
                     <dd className="col-sm-8">
-                      {moment(test.resultDate).format("llll")}
+                      {moment(test?.resultDate).format("llll")}
                     </dd>
                   </dl>
                 </div>
@@ -198,6 +247,7 @@ export default function OverViewDetails(props) {
               <button
                 className="btn btn-success float-right"
                 style={{ marginLeft: "10px" }}
+                onClick={simulateFetch}
               >
                 Fetch Contacts
               </button>
@@ -210,7 +260,15 @@ export default function OverViewDetails(props) {
               </button>
             </div>
             <div style={{ padding: "20px" }}>
-              {data.length > 0 ? (
+              {loading ? (
+                <div className="splash-screen" style={{ marginTop: "20%" }}>
+                  <h5>
+                    {" "}
+                    <i>connecting to external contact tracing api</i>{" "}
+                  </h5>
+                  <ScaleLoader color={"#36D7B7"} css={override} size={330} />
+                </div>
+              ) : data.length > 0 ? (
                 <BootstrapTable keyField="_id" data={data} columns={columns} />
               ) : (
                 <h1>No Contact Found </h1>
@@ -219,6 +277,12 @@ export default function OverViewDetails(props) {
           </div>
         </div>
       </div>
+      <EditCase
+        showModal={modal === "edit" ? showModal : false}
+        handleCloseModal={handleCloseModal}
+        caseId={props.location.state?._id}
+        state={state}
+      />
       <FollowUpForm
         showModal={modal === "follow-up" ? showModal : false}
         handleCloseModal={handleCloseModal}
@@ -229,6 +293,7 @@ export default function OverViewDetails(props) {
         handleCloseModal={handleCloseModal}
         caseId={props.location.state?._id}
       />
+      <ToastContainer position="top-center" />
     </div>
   );
 }

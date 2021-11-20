@@ -1,4 +1,4 @@
-.table {
+#covid-tracker.table {
   margin-top: 20px;
   overflow: scroll;
   color: #6a5d5d;
@@ -6,17 +6,17 @@
   height: 400px;
 }
 
-.table tr {
+#covid-tracker.table tr {
   display: flex;
   justify-content: space-around;
 }
 
-.table td,
-.table th {
+#covid-tracker.table td,
+#covid-tracker.table th {
   padding: 0.5rem;
   border: none;
 }
 
-.table tr:nth-of-type(even) {
+#covid-tracker.table tr:nth-of-type(even) {
   background-color: #baeea0;
 }

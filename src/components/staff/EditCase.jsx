@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import { Form, Col, Modal } from "react-bootstrap";
+import { Modal, Form, Col } from "react-bootstrap";
 import moment from "moment";
-import { addCaseContact } from "../../store/actions/adminActions";
+import { editCase } from "../../store/actions/adminActions";
 import { useDispatch } from "react-redux";
 
-export default function ContactForm(props) {
+export default function EditCase(props) {
+  const { state } = props;
   const [inputValue, setInputValue] = useState({
-    fullName: "",
-    gender: "",
-    birthDate: "",
-    age: "",
-    phone: "",
-    email: "",
-    occupation: "",
-    address: "",
-    caseRelationship: "",
-    lastContact: "",
-    caseId: "",
+    fullName: state.fullName,
+    gender: state.gender,
+    birthDate: state.birthDate,
+    age: state.age,
+    phone: state.phone,
+    email: state.email,
+    occupation: state.occupation,
+    address: state.address,
   });
-  const dispatch = useDispatch();
+
+  //   const [submit, setSubmit] = useState(false);
   const [error, setErrors] = useState({
     fullName: "",
     gender: "",
@@ -28,48 +27,35 @@ export default function ContactForm(props) {
     email: "",
     occupation: "",
     address: "",
-    caseRelationship: "",
-    lastContact: "",
-    caseId: "",
   });
-  const handleChange = (e) => {
-    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
-  };
-  const calculateAge = (age) => {
-    const years = moment().diff(`${age}`, "years", false);
-    return years;
-  };
+
+  const dispatch = useDispatch();
+
   const findError = () => {
-    const {
-      fullName,
-      gender,
-      birthDate,
-      phone,
-      email,
-      occupation,
-      address,
-      caseRelationship,
-      lastContact,
-    } = inputValue;
+    const { fullName, gender, birthDate, phone, occupation, address, email } =
+      inputValue;
     const newErrors = {};
     if (!fullName || fullName === "")
       newErrors.fullName = "name cannot be blank!";
     if (!gender || gender === "") newErrors.gender = "gender cannot be blank!";
     if (!birthDate || birthDate === "")
       newErrors.birthDate = "date of birth cannot be blank!";
-    if (!phone || phone === "")
-      newErrors.phone = "phone of birth cannot be blank!";
+    if (!phone || phone === "") newErrors.phone = "phone cannot be blank!";
     if (!occupation || occupation === "")
       newErrors.occupation = "occupation cannot be blank!";
     if (!address || address === "")
       newErrors.address = "address cannot be blank!";
-    if (!caseRelationship || caseRelationship === "")
-      newErrors.caseRelationship = "cannot be blank!";
-    if (!lastContact || lastContact === "")
-      newErrors.lastContact = "cannot be blank!";
-    if (!email || email === "") newErrors.email = "cannot be blank!";
+    if (!email || email === "") newErrors.email = "email cannot be blank!";
 
     return newErrors;
+  };
+  const handleChange = (e) => {
+    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
+  };
+
+  const calculateAge = (age) => {
+    const years = moment().diff(`${age}`, "years", false);
+    return years;
   };
 
   const handleSubmit = (e) => {
@@ -80,9 +66,8 @@ export default function ContactForm(props) {
     } else {
       inputValue.age = calculateAge(inputValue.birthDate);
       inputValue.caseId = props.caseId;
-      dispatch(addCaseContact(inputValue));
-      props.handleCloseModal();
-      //clear form
+      dispatch(editCase(inputValue));
+
       setInputValue({
         fullName: "",
         gender: "",
@@ -92,10 +77,8 @@ export default function ContactForm(props) {
         email: "",
         occupation: "",
         address: "",
-        caseRelationship: "",
-        lastContact: "",
-        caseId: "",
       });
+      props.handleCloseModal();
     }
   };
   return (
@@ -110,7 +93,7 @@ export default function ContactForm(props) {
           id="example-modal-sizes-title-lg"
           style={{ textAlign: "center" }}
         >
-          Confirmed Case Contact Form
+          Case Follow Up Form
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -185,7 +168,7 @@ export default function ContactForm(props) {
           <Form.Group className="col-md-6" controlId="formdepartment">
             <Form.Label>Email</Form.Label>
             <Form.Control
-              type="text"
+              type="email"
               name="email"
               value={inputValue?.email}
               onChange={handleChange}
@@ -195,6 +178,7 @@ export default function ContactForm(props) {
               {error.email}
             </Form.Control.Feedback>
           </Form.Group>
+
           <div className="card-body row">
             <Form.Group className="col-md-6" controlId="formdepartment">
               <Form.Label>Address</Form.Label>
@@ -223,34 +207,6 @@ export default function ContactForm(props) {
               </Form.Control.Feedback>
             </Form.Group>
           </div>
-          <div className="card-body row">
-            <Form.Group className="col-md-6" controlId="formdepartment">
-              <Form.Label>Relationship with case</Form.Label>
-              <Form.Control
-                type="text"
-                name="caseRelationship"
-                value={inputValue?.caseRelationship}
-                onChange={handleChange}
-                isInvalid={!!error.caseRelationship}
-              />
-              <Form.Control.Feedback type="invalid">
-                {error.caseRelationship}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="col-md-6" controlId="formdepartment">
-              <Form.Label>Last Contact with Case</Form.Label>
-              <Form.Control
-                type="date"
-                name="lastContact"
-                value={inputValue?.lastContact}
-                onChange={handleChange}
-                isInvalid={!!error.lastContact}
-              />
-              <Form.Control.Feedback type="invalid">
-                {error.lastContact}
-              </Form.Control.Feedback>
-            </Form.Group>
-          </div>
 
           <div className="card-footer">
             <button
@@ -259,13 +215,6 @@ export default function ContactForm(props) {
               className="btn btn-primary float-right"
             >
               Submit
-            </button>
-            <button
-              onClick={props.handleCloseModal}
-              className="btn btn-danger float-right"
-              style={{ marginRight: "15px" }}
-            >
-              Close
             </button>
           </div>
         </Form>

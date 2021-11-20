@@ -58,7 +58,6 @@ export default function FollowUpForm(props) {
       setErrors(newErrors);
     } else {
       inputValue.caseId = props.caseId;
-      console.log(inputValue);
       dispatch(addFollowUpDetail(inputValue));
       props.handleCloseModal();
       //clear form
@@ -68,8 +67,7 @@ export default function FollowUpForm(props) {
         treatmentStartDate: "",
         prescription: "",
         medTeamLeader: "",
-        maxTemperature: "",
-        diagonistic: "",
+        symptoms: "",
       });
     }
   };
@@ -197,6 +195,13 @@ export default function FollowUpForm(props) {
               className="btn btn-primary float-right"
             >
               Submit
+            </button>
+            <button
+              onClick={props.handleCloseModal}
+              className="btn btn-danger float-right"
+              style={{ marginRight: "15px" }}
+            >
+              Close
             </button>
           </div>
         </Form>
