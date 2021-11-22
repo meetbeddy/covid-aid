@@ -61,6 +61,10 @@ export default function TestForm(props) {
     if (!labId || labId === "") newErrors.labId = "Lab Id cannot be blank!";
     if (!specimenNumber || specimenNumber === "")
       newErrors.specimenNumber = "Number of specimen cannot be blank!";
+    else if (specimenNumber < 0) {
+      newErrors.specimenNumber =
+        "number of specimen collected cannot be negative!";
+    }
     if (!sampleRecievedDate || sampleRecievedDate === "")
       newErrors.sampleRecievedDate = "date recieved cannot be blank!";
     if (!testResult || testResult === "")

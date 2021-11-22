@@ -56,7 +56,7 @@ export const fetchContact = (id) => async (dispatch, getState) => {
 export const addFollowUpDetail = (data) => async (dispatch, getState) => {
   try {
     const res = await axios.post(
-      `http://localhost:5000/api/user/followup`,
+      `${baseUrl}/api/user/followup`,
       data,
       getConfig(getState)
     );
@@ -70,7 +70,7 @@ export const addFollowUpDetail = (data) => async (dispatch, getState) => {
 export const editCase = (data) => async (dispatch, getState) => {
   try {
     const res = await axios.put(
-      `http://localhost:5000/api/user/editcase`,
+      `${baseUrl}/api/user/editcase`,
       data,
       getConfig(getState)
     );
