@@ -28,7 +28,7 @@ export const createUser = (formdata) => async (dispatch) => {
       config
     );
 
-    dispatch({ type: "AUTH_SUCCESS", payload: res?.data });
+    dispatch({ type: "GET_SUCCESS_MSG", payload: res?.data });
   } catch (error) {
     dispatch({
       type: "GET_ERROR_MSG",

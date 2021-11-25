@@ -49,6 +49,22 @@
           "icon": "far fa-circle nav-icon"
         }
       ]
+    },
+    {
+      "id": 4,
+      "name": "Create user",
+      "icon": "nav-icon fas fa-columns",
+      "type": "single",
+      "path": "/dashboard/create-user",
+      "admin": true
+    },
+    {
+      "id": 5,
+      "name": "Cases",
+      "icon": "nav-icon fas fa-columns",
+      "type": "single",
+      "path": "/dashboard/cases",
+      "admin": true
     }
   ],
   "Blogs": [

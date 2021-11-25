@@ -27,13 +27,26 @@ export default function EditCase(props) {
     email: "",
     occupation: "",
     address: "",
+    state: "",
+    lga: "",
+    town: "",
   });
 
   const dispatch = useDispatch();
 
   const findError = () => {
-    const { fullName, gender, birthDate, phone, occupation, address, email } =
-      inputValue;
+    const {
+      fullName,
+      gender,
+      birthDate,
+      phone,
+      occupation,
+      address,
+      email,
+      state,
+      lga,
+      town,
+    } = inputValue;
     const newErrors = {};
     if (!fullName || fullName === "")
       newErrors.fullName = "name cannot be blank!";
@@ -46,6 +59,9 @@ export default function EditCase(props) {
     if (!address || address === "")
       newErrors.address = "address cannot be blank!";
     if (!email || email === "") newErrors.email = "email cannot be blank!";
+    if (!state || state === "") newErrors.state = "state cannot be blank!";
+    if (!lga || lga === "") newErrors.lga = "lga cannot be blank!";
+    if (!town || town === "") newErrors.town = "town cannot be blank!";
 
     return newErrors;
   };
@@ -165,19 +181,6 @@ export default function EditCase(props) {
               </Form.Control.Feedback>
             </Form.Group>
           </div>
-          <Form.Group className="col-md-6" controlId="formdepartment">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={inputValue?.email}
-              onChange={handleChange}
-              isInvalid={!!error.email}
-            />
-            <Form.Control.Feedback type="invalid">
-              {error.email}
-            </Form.Control.Feedback>
-          </Form.Group>
 
           <div className="card-body row">
             <Form.Group className="col-md-6" controlId="formdepartment">
@@ -204,6 +207,62 @@ export default function EditCase(props) {
               />
               <Form.Control.Feedback type="invalid">
                 {error.occupation}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </div>
+          <div className="card-body row">
+            <Form.Group className="col-md-6" controlId="formdepartment">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={inputValue?.email}
+                onChange={handleChange}
+                isInvalid={!!error.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.email}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="col-md-6" controlId="formdepartment">
+              <Form.Label>State</Form.Label>
+              <Form.Control
+                type="text"
+                name="state"
+                value={inputValue?.state}
+                onChange={handleChange}
+                isInvalid={!!error.state}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.state}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </div>
+          <div className="card-body row">
+            <Form.Group className="col-md-6" controlId="formdepartment">
+              <Form.Label>LGA</Form.Label>
+              <Form.Control
+                type="text"
+                name="lga"
+                value={inputValue?.lga}
+                onChange={handleChange}
+                isInvalid={!!error.lga}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.lga}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="col-md-6" controlId="formdepartment">
+              <Form.Label>Town</Form.Label>
+              <Form.Control
+                type="text"
+                name="town"
+                value={inputValue?.town}
+                onChange={handleChange}
+                isInvalid={!!error.town}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.town}
               </Form.Control.Feedback>
             </Form.Group>
           </div>

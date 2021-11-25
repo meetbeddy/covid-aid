@@ -3,14 +3,12 @@ import authReducer from "./authReducer";
 import userProfileReducer from "./userProfileReducer";
 import notificationReducer from "./notificationReducer";
 import adminReducer from "./adminReducer";
-import instructionReducer from "./instructionsReducer";
 
 const appReducer = combineReducers({
   auth: authReducer,
   userProfile: userProfileReducer,
   notification: notificationReducer,
   admin: adminReducer,
-  instruction: instructionReducer,
 });
 
 const rootReducer = (state, action) => {

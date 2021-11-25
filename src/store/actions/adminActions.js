@@ -80,3 +80,28 @@ export const editCase = (data) => async (dispatch, getState) => {
     dispatch({ type: "GET_ERROR_MSG", payload: err.response?.data });
   }
 };
+
+export const removeCase = (id) => async (dispatch, getState) => {
+  try {
+    const res = await axios.delete(
+      `${baseUrl}/api/user/removecase`,
+      {
+        headers: {
+          Content_Type: "application/json",
+        },
+        data: {
+          id,
+        },
+      },
+
+      getConfig(getState)
+    );
+
+    dispatch({ type: "GET_SUCCESS_MSG", payload: res.data });
+  } catch (err) {
+    dispatch({
+      type: "GET_ERROR_MSG",
+      payload: err?.response?.data,
+    });
+  }
+};

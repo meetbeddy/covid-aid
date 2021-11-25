@@ -12,6 +12,9 @@ export default function FollowUpForm(props) {
     prescription: "",
     medTeamLeader: "",
     symptoms: "",
+    weight: "",
+    height: "",
+    bodyTemp: "",
   });
 
   const [error, setErrors] = useState({
@@ -21,6 +24,9 @@ export default function FollowUpForm(props) {
     prescription: "",
     medTeamLeader: "",
     symptoms: "",
+    weight: "",
+    height: "",
+    bodyTemp: "",
   });
   const findError = () => {
     const {
@@ -30,6 +36,9 @@ export default function FollowUpForm(props) {
       prescription,
       medTeamLeader,
       symptoms,
+      weight,
+      height,
+      bodyTemp,
     } = inputValue;
     const newErrors = {};
     if (!healthStatus || healthStatus === "")
@@ -44,6 +53,18 @@ export default function FollowUpForm(props) {
       newErrors.medTeamLeader = "med team leader cannot be blank!";
     if (!symptoms || symptoms === "")
       newErrors.symptoms = "symptoms cannot be blank!";
+    if (!bodyTemp || bodyTemp === "")
+      newErrors.bodyTemp = "body temperature cannot be blank!";
+    if (!weight || weight === "") {
+      newErrors.weight = "weight cannot be blank!";
+    } else if (weight < 0) {
+      newErrors.weight = "weight cannot be negative!";
+    }
+    if (!height || height === "") {
+      newErrors.height = "height cannot be blank!";
+    } else if (height < 0) {
+      newErrors.height = "height cannot be negative!";
+    }
 
     return newErrors;
   };
@@ -124,6 +145,49 @@ export default function FollowUpForm(props) {
               />
               <Form.Control.Feedback type="invalid">
                 {error.treatmentStartDate}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </div>
+          <div className="card-body row">
+            <Form.Group className="mb-3 col-md-6" controlId="formdepartment">
+              <Form.Label>Body Temperature</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="highest body temperature recorded during treatment"
+                name="bodyTemp"
+                value={inputValue?.bodyTemp}
+                onChange={handleChange}
+                isInvalid={!!error.bodyTemp}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.bodyTemp}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3 col-md-6" controlId="formdepartment">
+              <Form.Label>weight</Form.Label>
+              <Form.Control
+                type="number"
+                name="weight"
+                value={inputValue?.weight}
+                onChange={handleChange}
+                isInvalid={!!error.weight}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.weight}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3 col-md-6" controlId="formdepartment">
+              <Form.Label>height</Form.Label>
+              <Form.Control
+                type="number"
+                name="height"
+                value={inputValue?.height}
+                onChange={handleChange}
+                isInvalid={!!error.height}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.height}
               </Form.Control.Feedback>
             </Form.Group>
           </div>

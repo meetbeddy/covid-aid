@@ -16,6 +16,8 @@ import ConfirmedCases from "./components/staff/ConfirmedCases";
 import ConfirmedCaseOverview from "./components/staff/ConfirmedCaseOverview";
 import ViewSuspectedCases from "./components/staff/ViewSuspectedCases";
 import ClosedCases from "./components/staff/ClosedCases";
+import CreateUser from "./components/staff/CreateUser";
+import Cases from "./components/staff/Cases";
 
 function App(props) {
   const user = useSelector((state) => state.auth.user);
@@ -61,6 +63,18 @@ function App(props) {
         <PrivateRoute
           exact
           user={user}
+          path="/dashboard/create-user"
+          component={CreateUser}
+        />
+        <PrivateRoute
+          exact
+          user={user}
+          path="/dashboard/cases"
+          component={Cases}
+        />
+        <PrivateRoute
+          exact
+          user={user}
           path="/dashboard/enter-patient"
           component={SuspectedCase}
         />
@@ -94,6 +108,7 @@ function App(props) {
           path="/dashboard/manage-case/suspected-cases"
           component={ViewSuspectedCases}
         />
+
         <PrivateRoute
           exact
           user={user}
