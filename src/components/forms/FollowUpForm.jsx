@@ -153,7 +153,7 @@ export default function FollowUpForm(props) {
               <Form.Label>Body Temperature</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="highest body temperature recorded during treatment"
+                placeholder="highest body temperature recorded during treatment in celsius"
                 name="bodyTemp"
                 value={inputValue?.bodyTemp}
                 onChange={handleChange}
@@ -169,6 +169,7 @@ export default function FollowUpForm(props) {
               <Form.Control
                 type="number"
                 name="weight"
+                placeholder="enter weight in kg"
                 value={inputValue?.weight}
                 onChange={handleChange}
                 isInvalid={!!error.weight}
@@ -182,6 +183,7 @@ export default function FollowUpForm(props) {
               <Form.Control
                 type="number"
                 name="height"
+                placeholder="enter height in metres"
                 value={inputValue?.height}
                 onChange={handleChange}
                 isInvalid={!!error.height}

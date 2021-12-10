@@ -7,14 +7,14 @@ import { useDispatch } from "react-redux";
 export default function EditCase(props) {
   const { state } = props;
   const [inputValue, setInputValue] = useState({
-    fullName: state.fullName,
-    gender: state.gender,
-    birthDate: state.birthDate,
-    age: state.age,
-    phone: state.phone,
-    email: state.email,
-    occupation: state.occupation,
-    address: state.address,
+    fullName: state?.fullName,
+    gender: state?.gender,
+    birthDate: state?.birthDate,
+    age: state?.age,
+    phone: state?.phone,
+    email: state?.email,
+    occupation: state?.occupation,
+    address: state?.address,
   });
 
   //   const [submit, setSubmit] = useState(false);

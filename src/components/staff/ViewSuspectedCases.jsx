@@ -58,8 +58,32 @@ export default function ViewSuspectedCases() {
       },
     },
     {
+      dataField: "state",
+      text: "State",
+      headerStyle: {
+        backgroundColor: "#c8e6c9",
+        width: "150px",
+      },
+    },
+    {
+      dataField: "lga",
+      text: "LGA",
+      headerStyle: {
+        backgroundColor: "#c8e6c9",
+        width: "150px",
+      },
+    },
+    {
       dataField: "address",
       text: "Address",
+      headerStyle: {
+        backgroundColor: "#c8e6c9",
+        width: "150px",
+      },
+    },
+    {
+      dataField: "town",
+      text: "Town",
       headerStyle: {
         backgroundColor: "#c8e6c9",
         width: "150px",

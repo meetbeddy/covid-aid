@@ -178,36 +178,42 @@ export default function OverViewDetails(props) {
               <dd className="col-sm-8">{state?.occupation}</dd>
               <dt className="col-sm-4">Address</dt>
               <dd className="col-sm-8">{state?.address}</dd>
+              <dt className="col-sm-4">State</dt>
+              <dd className="col-sm-8">{state?.state}</dd>
+              <dt className="col-sm-4">LGA</dt>
+              <dd className="col-sm-8">{state?.lga}</dd>
+              <dt className="col-sm-4">Town</dt>
+              <dd className="col-sm-8">{state?.town}</dd>
             </dl>
             <p className="lead text-primary">Follow Up Information</p>
-            {state?.caseFollowUp && (
-              <dl className="row">
-                <dt className="col-sm-4"> Health Status:</dt>
-                <dd className="col-sm-8">
-                  {state?.caseFollowUp?.healthStatus}
-                </dd>
-                <dt className="col-sm-4">Treatment Center</dt>
-                <dd className="col-sm-8">
-                  {state?.caseFollowUp?.treatmentCenter}
-                </dd>
-                <dt className="col-sm-4">Prescription </dt>
-                <dd className="col-sm-8">
-                  {state?.caseFollowUp?.prescription}
-                </dd>
-                <dt className="col-sm-4">Medical Team Leader </dt>
-                <dd className="col-sm-8">
-                  {state?.caseFollowUp?.medTeamLeader}
-                </dd>
-                <dt className="col-sm-4">Date Treatement Commenced </dt>
-                <dd className="col-sm-8">
-                  {state?.caseFollowUp?.treatmentStartDate}
-                </dd>
-                <dt className="col-sm-4">Date last updated </dt>
-                <dd className="col-sm-8">
-                  {moment(stateId?.caseFollowUp?.updatedAt).format("llll")}
-                </dd>
-              </dl>
-            )}
+            {state?.caseFollowUp?.map((followup, i) => {
+              return (
+                <dl className="row" key={i}>
+                  <dt className="col-sm-4"> Health Status:</dt>
+                  <dd className="col-sm-8">{followup?.healthStatus}</dd>
+                  <dt className="col-sm-4">Treatment Center</dt>
+                  <dd className="col-sm-8">{followup?.treatmentCenter}</dd>
+                  <dt className="col-sm-4">Prescription </dt>
+                  <dd className="col-sm-8">{followup?.prescription}</dd>
+                  <dt className="col-sm-4">Medical Team Leader </dt>
+                  <dd className="col-sm-8">{followup?.medTeamLeader}</dd>
+                  <dt className="col-sm-4">Body Temperature </dt>
+                  <dd className="col-sm-8">
+                    {followup?.bodyTemp + `\u{00B0}` + "C"}
+                  </dd>
+                  <dt className="col-sm-4">Weight </dt>
+                  <dd className="col-sm-8">{followup?.weight + "KG"}</dd>
+                  <dt className="col-sm-4">Height </dt>
+                  <dd className="col-sm-8">{followup?.height + "M"}</dd>
+                  <dt className="col-sm-4">Date Treatement Commenced </dt>
+                  <dd className="col-sm-8">{followup?.treatmentStartDate}</dd>
+                  <dt className="col-sm-4">Date last updated </dt>
+                  <dd className="col-sm-8">
+                    {moment(followup?.updatedAt).format("llll")}
+                  </dd>
+                </dl>
+              );
+            })}
           </div>
           <div
             className="tab-pane fade"

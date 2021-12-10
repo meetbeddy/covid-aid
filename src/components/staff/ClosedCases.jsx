@@ -23,7 +23,7 @@ export default function ClosedCases() {
     c.serial = index + 1;
     c.caseFollowUp
       ? (c.healthStatus = c.caseFollowUp.healthStatus)
-      : (c.healthStatus = "unknown");
+      : (c.healthStatus = "negative test result");
     closedCases.push(c);
   });
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ContentWrapper from "../utilities/ContentWrapper";
 import { Form, Col } from "react-bootstrap";
 import moment from "moment";
+import JsonData from "../../data/data.json";
 import { submitCase } from "../../store/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
@@ -79,6 +80,27 @@ export default function SuspectedCase() {
     if (!town || town === "") newErrors.town = "town cannot be blank!";
 
     return newErrors;
+  };
+  const [stateData, setStateData] = useState([]);
+  const [selectedState, setSelectedState] = useState("");
+  const [lga, setLga] = useState([]);
+
+  React.useEffect(() => {
+    setStateData(JsonData);
+
+    if (selectedState) {
+      setLga(selectedState.lgas);
+    } else {
+      setLga([]);
+    }
+  }, [selectedState]);
+
+  const handleSetLga = (e) => {
+    setSelectedState(
+      stateData.NigerianStates.find((state) => {
+        return state.state === e.target.value;
+      })
+    );
   };
   const handleChange = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
@@ -230,30 +252,49 @@ export default function SuspectedCase() {
                 {error.email}
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="col-md-6" controlId="formdepartment">
-              <Form.Label>State</Form.Label>
+            <Form.Group className="col-md-6" controlId="formTitle">
+              <Form.Label>State </Form.Label>
               <Form.Control
-                type="text"
+                as="select"
                 name="state"
                 value={inputValue?.state}
-                onChange={handleChange}
-                isInvalid={!!error.state}
-              />
+                onChange={(e) => {
+                  handleChange(e);
+                  handleSetLga(e);
+                }}
+              >
+                <option> select state</option>
+                {stateData?.NigerianStates?.map((state) => {
+                  return (
+                    <option key={state.state} value={state.state}>
+                      {state.state}{" "}
+                    </option>
+                  );
+                })}
+              </Form.Control>
               <Form.Control.Feedback type="invalid">
                 {error.state}
               </Form.Control.Feedback>
             </Form.Group>
           </div>
           <div className="card-body row">
-            <Form.Group className="col-md-6" controlId="formdepartment">
+            <Form.Group className="col-md-6" controlId="formTitle">
               <Form.Label>LGA</Form.Label>
               <Form.Control
-                type="text"
+                as="select"
                 name="lga"
-                value={inputValue?.lga}
+                value={inputValue.lga}
                 onChange={handleChange}
-                isInvalid={!!error.lga}
-              />
+              >
+                <option> select your lga</option>
+                {lga?.map((lga) => {
+                  return (
+                    <option key={lga} value={lga}>
+                      {lga}{" "}
+                    </option>
+                  );
+                })}
+              </Form.Control>
               <Form.Control.Feedback type="invalid">
                 {error.lga}
               </Form.Control.Feedback>

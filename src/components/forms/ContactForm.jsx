@@ -110,7 +110,7 @@ export default function ContactForm(props) {
           id="example-modal-sizes-title-lg"
           style={{ textAlign: "center" }}
         >
-          Confirmed Case Contact Form
+          Confirmed Case Contact Tracing
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
